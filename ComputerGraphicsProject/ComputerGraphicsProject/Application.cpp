@@ -20,8 +20,8 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
     static bool firstMouse = true;
     static double lastX;
-	static double lastY;
-	
+    static double lastY;
+
     if (firstMouse)
     {
         lastX = xpos;
@@ -50,7 +50,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 
     if (app->_pitch > 89.0f)
         app->_pitch = 89.0f;
-	
+
     if (app->_pitch < -89.0f)
         app->_pitch = -89.0f;
 
@@ -65,12 +65,12 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     auto* app = (Application*)glfwGetWindowUserPointer(window);
-	
+
     app->_fov -= (float)yoffset;
-	
+
     if (app->_fov < 1.0f)
         app->_fov = 1.0f;
-	
+
     if (app->_fov > 45.0f)
         app->_fov = 45.0f;
 }
@@ -78,7 +78,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 void Application::ProcessInput(GLFWwindow* window, float dt)
 {
     const float cameraSpeed = 2.5f * dt; // adjust accordingly
-	
+
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         _cameraPos += cameraSpeed * _cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -127,20 +127,20 @@ void Application::Run()
 
     float deltaTime = 0.0f;	// Time between current frame and last frame
     float lastFrame = 0.0f; // Time of last frame
-	
-	while (!glfwWindowShouldClose(window))
-	{
+
+    while (!glfwWindowShouldClose(window))
+    {
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
-		
+
         ProcessInput(window, deltaTime);
         Update(deltaTime);
         Render();
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-	}
+    }
 
     glfwTerminate();
 }
@@ -149,9 +149,12 @@ void Application::Init()
 {
     //_ba2 = std::make_unique<Model>("res\\models\\ba2\\ba2.obj");
     _couch = std::make_unique<Model>("res\\models\\bed2\\bed.obj");
+    _centralLamp = std::make_unique<Model>("res\\models\\central-lamp\\1.obj");
+    _modernChair = std::make_unique<Model>("res\\models\\modern-chair\\modern-chair.obj");
+    _sofa = std::make_unique<Model>("res\\models\\sofa\\sofa.obj");
 
     _shader = std::make_unique<Shader>("res\\lighting.vert.glsl", "res\\lighting.frag.glsl");
-    
+
     glEnable(GL_DEPTH_TEST);
 }
 
@@ -185,4 +188,7 @@ void Application::Render()
 
     //_ba2->Draw(*_shader);
     _couch->Draw(*_shader);
+    _centralLamp->Draw(*_shader);
+    _modernChair->Draw(*_shader);
+    _sofa->Draw(*_shader);
 }

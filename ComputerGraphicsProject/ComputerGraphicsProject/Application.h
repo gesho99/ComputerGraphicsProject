@@ -27,6 +27,10 @@ private:
 private:
 	std::unique_ptr<Model> _ba2;
 	std::unique_ptr<Model> _couch;
+	std::unique_ptr<Model> _centralLamp;
+	std::unique_ptr<Model> _modernChair;
+	std::unique_ptr<Model> _sofa;
+
 	std::unique_ptr<Shader> _shader;
 
 	glm::vec3 _lightPos = glm::vec3(1.2f, 1.0f, 2.0f);
