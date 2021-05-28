@@ -1,0 +1,36 @@
+# Blender MTL File: 'Bed Scene.blend'
+# Material Count: 3
+
+newmtl Fabric_1
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd textures\\Fabrics\\TexturesCom_Fabric_Cotton_1K_albedo.tif
+map_Ns textures\\Fabrics\\Blender-TexturesCom_Fabric_Cotton_1K_roughness.tif
+
+newmtl Fabric_2
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd textures\\Fabrics\\TexturesCom_Fabric_Cotton_1K_albedo.tif
+map_Ns textures\\Fabrics\\Blender-TexturesCom_Fabric_Cotton_1K_roughness.tif
+
+newmtl Pillow1.004
+Ns 28.763246
+Ka 1.000000 1.000000 1.000000
+Kd 0.843137 0.843137 0.843137
+Ks 0.075000 0.075000 0.075000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
