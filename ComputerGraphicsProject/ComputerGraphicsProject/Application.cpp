@@ -77,7 +77,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
 void Application::ProcessInput(GLFWwindow* window, float dt)
 {
-    const float cameraSpeed = 2.5f * dt; // adjust accordingly
+    const float cameraSpeed = 6.5f * dt; // adjust accordingly
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         _cameraPos += cameraSpeed * _cameraFront;
@@ -148,12 +148,15 @@ void Application::Run()
 void Application::Init()
 {
     //_ba2 = std::make_unique<Model>("res\\models\\ba2\\ba2.obj");
-    _couch = std::make_unique<Model>("res\\models\\bed2\\bed.obj");
+    _bed = std::make_unique<Model>("res\\models\\bed2\\bed.obj");
     _centralLamp = std::make_unique<Model>("res\\models\\central-lamp\\1.obj");
     _modernChair = std::make_unique<Model>("res\\models\\modern-chair\\modern-chair.obj");
     _sofa = std::make_unique<Model>("res\\models\\sofa\\sofa.obj");
+    _roomBox = std::make_unique<Model>("res\\models\\room-box\\untitled.obj");
+    _sun = std::make_unique<Model>("res\\models\\sun\\sun.obj");
 
     _shader = std::make_unique<Shader>("res\\lighting.vert.glsl", "res\\lighting.frag.glsl");
+    _secondLightShader = std::make_unique<Shader>("res\\secondLight.vert.glsl", "res\\secondLight.frag.glsl");
 
     glEnable(GL_DEPTH_TEST);
 }
@@ -166,12 +169,18 @@ void Application::Update(float dt)
     _shader->use();
     _shader->setFloatMat4("view", view);
     _shader->setFloatMat4("projection", projection);
+
+    _secondLightShader->use();
+    _secondLightShader->setFloatMat4("view", view);
+    _secondLightShader->setFloatMat4("projection", projection);
 }
 
 void Application::Render()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glm::mat4 scale = glm::mat4(1.0f);
+    glm::mat4 rotate = glm::mat4(1.0f);
 
     _shader->use();
     _shader->setFloat3("viewPos", _cameraPos);
@@ -182,13 +191,49 @@ void Application::Render()
     _shader->setFloat3("light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
     _shader->setFloat3("light.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
     _shader->setFloat3("light.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+    _shader->setFloatMat4("scale", scale);
+    _shader->setFloatMat4("scale", rotate);
+
+    float angle = -180.0f;
 
     glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(6.5f, 0.0f, -28.8f));
+    model = glm::scale(model, glm::vec3(3.0f));
+    _shader->setFloatMat4("model", model);
+    _bed->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::scale(model, glm::vec3(5.0f, 2.0f, 5.0f));
+    _shader->setFloatMat4("model", model);
+    _roomBox->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.0f, 18.8f, 10.0f));
+    model = glm::scale(model, glm::vec3(0.8f, 0.5f, 0.8f));
     _shader->setFloatMat4("model", model);
 
-    //_ba2->Draw(*_shader);
-    _couch->Draw(*_shader);
     _centralLamp->Draw(*_shader);
+
+    angle = 90.0f;
+    model = glm::mat4(1.0f);
+    model = glm::rotate(model, glm::radians(angle), glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::translate(model, glm::vec3(17.0f, -0.3f, -9.0f));
+    model = glm::scale(model, glm::vec3(1.3f));
+    _shader->setFloatMat4("model", model);
+
     _modernChair->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(2.0f, -0.3f, -27.2f));
+    model = glm::scale(model, glm::vec3(0.4f, 0.5f, 0.5f));
+    _shader->setFloatMat4("model", model);
+
     _sofa->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, _lightPos);
+    model = glm::scale(model, glm::vec3(0.1f));
+    _shader->setFloatMat4("model", model);
+    _sun->Draw(*_shader);
 }
