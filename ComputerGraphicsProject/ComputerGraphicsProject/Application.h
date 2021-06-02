@@ -32,11 +32,14 @@ private:
 	std::unique_ptr<Model> _sofa;
 	std::unique_ptr<Model> _roomBox;
 	std::unique_ptr<Model> _sun;
+	std::unique_ptr<Model> _nightLamp;
 
 	std::unique_ptr<Shader> _shader;
 	std::unique_ptr<Shader> _secondLightShader;
 
-	glm::vec3 _lightPos = glm::vec3(0.0f, 70.0f, -130.0f);
+	glm::vec3 _lightPos = glm::vec3(0.0f, 100.0f, 10.0f);
+	glm::vec3 _lightPos2 = glm::vec3(0.0f, 19.5f, 0.0f);
+	glm::vec3 _lightPos3 = glm::vec3(-30.0f, 5.0f, 29.0f);
 	glm::vec3 _lightColor = glm::vec3(1.f, 1.f, 1.f);
 
 	glm::vec3 _cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);

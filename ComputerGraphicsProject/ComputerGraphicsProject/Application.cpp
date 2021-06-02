@@ -154,6 +154,7 @@ void Application::Init()
     _sofa = std::make_unique<Model>("res\\models\\sofa\\sofa.obj");
     _roomBox = std::make_unique<Model>("res\\models\\room-box\\untitled.obj");
     _sun = std::make_unique<Model>("res\\models\\sun\\sun.obj");
+    _nightLamp = std::make_unique<Model>("res\\models\\night-lamp\\night-lamp.obj");
 
     _shader = std::make_unique<Shader>("res\\lighting.vert.glsl", "res\\lighting.frag.glsl");
     _secondLightShader = std::make_unique<Shader>("res\\secondLight.vert.glsl", "res\\secondLight.frag.glsl");
@@ -179,18 +180,40 @@ void Application::Render()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     glm::mat4 scale = glm::mat4(1.0f);
     glm::mat4 rotate = glm::mat4(1.0f);
+
+    glm::vec3 pointLightPositions[] = {
+        _lightPos2,
+        _lightPos3,
+    };
 
     _shader->use();
     _shader->setFloat3("viewPos", _cameraPos);
 
     _shader->setFloat("material.shininess", 16.f);
 
-    _shader->setFloat3("light.position", _lightPos);
-    _shader->setFloat3("light.ambient", glm::vec3(0.2f, 0.2f, 0.2f));
-    _shader->setFloat3("light.diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
-    _shader->setFloat3("light.specular", glm::vec3(1.0f, 1.0f, 1.0f));
+    //_shader->setFloat3("dirLight.direction", -(_lightPos));
+    //_shader->setFloat3("dirLight.ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    //_shader->setFloat3("dirLight.diffuse", glm::vec3(0.4f, 0.4f, 0.4f));
+    //_shader->setFloat3("dirLight.specular", glm::vec3(0.5f, 0.5f, 0.5f));
+    _shader->setFloat3("pointLights[0].position", pointLightPositions[0]);
+    _shader->setFloat3("pointLights[0].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    _shader->setFloat3("pointLights[0].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    _shader->setFloat3("pointLights[0].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+    _shader->setFloat("pointLights[0].constant", 1.0f);
+    _shader->setFloat("pointLights[0].linear", 0.007);
+    _shader->setFloat("pointLights[0].quadratic", 0.0002);
+
+    _shader->setFloat3("pointLights[1].position", pointLightPositions[1]);
+    _shader->setFloat3("pointLights[1].ambient", glm::vec3(0.05f, 0.05f, 0.05f));
+    _shader->setFloat3("pointLights[1].diffuse", glm::vec3(0.8f, 0.8f, 0.8f));
+    _shader->setFloat3("pointLights[1].specular", glm::vec3(1.0f, 1.0f, 1.0f));
+    _shader->setFloat("pointLights[1].constant", 1.0f);
+    _shader->setFloat("pointLights[1].linear", 0.09);
+    _shader->setFloat("pointLights[1].quadratic", 0.032);
+
     _shader->setFloatMat4("scale", scale);
     _shader->setFloatMat4("scale", rotate);
 
@@ -209,7 +232,7 @@ void Application::Render()
     _roomBox->Draw(*_shader);
 
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.0f, 18.8f, 10.0f));
+    model = glm::translate(model, glm::vec3(0.0f, 18.8f, 0.0f));
     model = glm::scale(model, glm::vec3(0.8f, 0.5f, 0.8f));
     _shader->setFloatMat4("model", model);
 
@@ -236,4 +259,16 @@ void Application::Render()
     model = glm::scale(model, glm::vec3(0.1f));
     _shader->setFloatMat4("model", model);
     _sun->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, _lightPos2);
+    model = glm::scale(model, glm::vec3(0.050f));
+    _shader->setFloatMat4("model", model);
+    _sun->Draw(*_shader);
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(-30.0f, 0.0f, 29.0f));
+    model = glm::scale(model, glm::vec3(0.1f));
+    _shader->setFloatMat4("model", model);
+    _nightLamp->Draw(*_shader);
 }
