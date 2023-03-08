@@ -1,3 +1,30 @@
+## :pencil: Project Description EN :pencil:
+
+My course project in the subject "Computer Graphics" at the Technical University - Sofia, Faculty of Applied Mathematics and Informatics, "Informatics and Software Sciences", Bachelor.
+
+Requirements:
+
+The project must have an overall concept ("theme") and not be just a technological demo. For example, "3D Tetris" is a theme and "Moving and Rotating Geometric Figures" is a technology demo.
+Using OpenGL Core Profile and C++ as the technology stack is recommended. Other programming languages (e.g. C#) and other graphics libraries (e.g. DirectX) are also acceptable. The use of proprietary shaders carries an advantage. Use of the OpenGL Compatibility Profile is NOT acceptable.
+The project must have a scene with at least 5 interacting objects (e.g. walls that cannot be traversed, two players, a ball, etc.).
+Interaction between objects means:
+Detect and handle collisions between objects (e.g., a ball bouncing and spinning when colliding with a moving bat)
+the direction and speed of motion of one object to depend on the position of another object (e.g. gravity in the context of space bodies)
+the colours of an object change under the influence of another object (e.g. light source, light reflected from the object)
+The use of textures in the design brings an advantage.
+It is recommended that the user be able to interact with objects in the scene (e.g., be able to change the direction of player movement, be able to increase or decrease light sources, move or rotate objects, etc.).
+Topic - "Interior Design"
+
+The goal of the project is to create a scene with the interior layout of a room.
+
+The main objects are walls, windows, furniture, doors, decorations (e.g. paintings, carpets), lampposts.
+The user can take a virtual walk in the room, moving on the floor, being constrained by the walls, doors and furniture.
+The room can be viewed under different weather conditions: on a sunny day, on a cloudy day, at night.
+The artificial lighting consists of a minimum of two lamps, one on the ceiling and one night lamp, and the user can set the light (how many kelvin) of the bulbs in the two lamps.
+The user can turn the artificial lighting on and off (each lamp is controlled separately) and see its effect on objects in the room, including shadows.
+
+## :pencil: Project Description BG :pencil:
+
 Моят курсов проект по предмета "Компютърна графика" в Технически Университет - София, факлутет по приложна математика и информатика, специалност "Информатика и софтуерни науки", бакалавър.
 
 Изисквания:
