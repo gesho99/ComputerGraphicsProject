@@ -4,15 +4,16 @@ My course project in the subject "Computer Graphics" at the Technical University
 
 Requirements:
 
-The project must have an overall concept ("theme") and not be just a technological demo. For example, "3D Tetris" is a theme and "Moving and Rotating Geometric Figures" is a technology demo.
-Using OpenGL Core Profile and C++ as the technology stack is recommended. Other programming languages (e.g. C#) and other graphics libraries (e.g. DirectX) are also acceptable. The use of proprietary shaders carries an advantage. Use of the OpenGL Compatibility Profile is NOT acceptable.
-The project must have a scene with at least 5 interacting objects (e.g. walls that cannot be traversed, two players, a ball, etc.).
-Interaction between objects means:
-Detect and handle collisions between objects (e.g., a ball bouncing and spinning when colliding with a moving bat)
-the direction and speed of motion of one object to depend on the position of another object (e.g. gravity in the context of space bodies)
-the colours of an object change under the influence of another object (e.g. light source, light reflected from the object)
-The use of textures in the design brings an advantage.
-It is recommended that the user be able to interact with objects in the scene (e.g., be able to change the direction of player movement, be able to increase or decrease light sources, move or rotate objects, etc.).
+1. The project must have an overall concept ("theme") and not be just a technological demo. For example, "3D Tetris" is a theme and "Moving and Rotating Geometric Figures" is a technology demo.
+2. Using OpenGL Core Profile and C++ as the technology stack is recommended. Other programming languages (e.g. C#) and other graphics libraries (e.g. DirectX) are also acceptable. The use of proprietary shaders carries an advantage. Use of the OpenGL Compatibility Profile is NOT acceptable.
+3. The project must have a scene with at least 5 interacting objects (e.g. walls that cannot be traversed, two players, a ball, etc.).
+4. Interaction between objects means:
+    - Detect and handle collisions between objects (e.g., a ball bouncing and spinning when colliding with a moving bat)
+    - the direction and speed of motion of one object to depend on the position of another object (e.g. gravity in the context of space bodies)
+    - the colours of an object change under the influence of another object (e.g. light source, light reflected from the object)
+5. The use of textures in the design brings an advantage.
+6. It is recommended that the user be able to interact with objects in the scene (e.g., be able to change the direction of player movement, be able to increase or decrease light sources, move or rotate objects, etc.).
+
 Topic - "Interior Design"
 
 The goal of the project is to create a scene with the interior layout of a room.
