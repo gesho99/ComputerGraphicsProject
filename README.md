@@ -17,11 +17,11 @@ Topic - "Interior Design"
 
 The goal of the project is to create a scene with the interior layout of a room.
 
-The main objects are walls, windows, furniture, doors, decorations (e.g. paintings, carpets), lampposts.
-The user can take a virtual walk in the room, moving on the floor, being constrained by the walls, doors and furniture.
-The room can be viewed under different weather conditions: on a sunny day, on a cloudy day, at night.
-The artificial lighting consists of a minimum of two lamps, one on the ceiling and one night lamp, and the user can set the light (how many kelvin) of the bulbs in the two lamps.
-The user can turn the artificial lighting on and off (each lamp is controlled separately) and see its effect on objects in the room, including shadows.
+- The main objects are walls, windows, furniture, doors, decorations (e.g. paintings, carpets), lampposts.
+- The user can take a virtual walk in the room, moving on the floor, being constrained by the walls, doors and furniture.
+- The room can be viewed under different weather conditions: on a sunny day, on a cloudy day, at night.
+- The artificial lighting consists of a minimum of two lamps, one on the ceiling and one night lamp, and the user can set the light (how many kelvin) of the bulbs in the two lamps.
+- The user can turn the artificial lighting on and off (each lamp is controlled separately) and see its effect on objects in the room, including shadows.
 
 ## :pencil: Project Description BG :pencil:
 
